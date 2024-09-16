@@ -5,21 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <style>
+        .bg-white{
+            background-color: whitesmoke;
+        }
+        .shelf {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+        }
+        .shelf li{
+            flex: 1 0 200px;
+            margin: 0 1rem 1rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .shelf h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .shelf .price {
+            text-align: right;
+            font-size
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class=""title">My Bulma Example</h1>
-        
-        <ul>
-            <li class="item">Something</li>
-            <li class="item">Something else</li>
-            
-            
-        </ul>                                                                                                                                                                                                                                                                                                                                                                                   
+    <div class="hero is-info">
+        <div class="hero-body"></div>
     </div>
-    <div class="message is-success">
+    <div class="container">
+        </div>
+    </div>
+</div>                                                                                                                                                                                                                                                                                                                                                                           
         <div class="message-body">This is a message</div>
     </div>
+    
+
+    <div class="section bg-white" id="app">
+        <div class="columns">
+            <div class="column is-three-quarters">
+                ((message))
+                <ul class="shelf">
+                    <li v-for="product in products" @click="addToCart(product)">
+                        <h3>{{ product.name }}</h3>>
+                        <p class="price">{{ product.price }}</p>
+                        </li>
+                </ul>
+            </div>
+            <div class="column">
+                <table class="table"></table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in cart">
+                        <td>{{ item.product.name }}</td>
+                        <td>${{ item.product.price }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.product.price * item.quantity }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total</td>
+                        <td>${{ cart.reduce((total, item) => total + (item.product.price * item.quantity), 0) }}</td>
+                    </tr>
+                </tfoot>
+            </div>
     </div>
+</div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp, ref } = Vue
+
+  createApp({
+    setup() {
+      const message = ref('Hello vue!')
+
+      const products = ref([
+        { name: 'Product 1', price: 5.50 },
+        { name: 'Product 2', price: 7.33},
+        { name: 'Product 3', price: 14.54 },
+      ])
+      
+      const cart = ref([])
+
+      
+
+      function addToCart(product) {
+        const item = cart.value.find(item => item.product.name === product.name)
+        if (item) {
+          item.quantity++
+        } else {
+          cart.value.push({product, quantity: 1})
+        }
+      }
+      return {
+        message, products, cart, addToCart
+      }
+    }
+  }).mount('#app')
+        
+        
+        
+        </script>
 </body>
 </html>
