@@ -18,5 +18,5 @@ body {
 
   .container { 
   background-color: whitesmoke;
-  box-shadow: 
+  }
 </style>
