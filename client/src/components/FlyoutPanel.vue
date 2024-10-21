@@ -1,7 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps<{
+  isOpen: boolean
+}>()
+</script>
 
 <template>
-  <div class="flyout"></div>
+  <div class="flyout" :class="{ isOpen }"></div>
+  <slot />
 </template>
 
 <style scoped>
