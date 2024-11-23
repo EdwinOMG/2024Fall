@@ -5,8 +5,9 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="flyout" :class="{ isOpen }"></div>
-  <slot />
+  <div class="flyout" :class="{ isOpen }">
+    <slot />
+  </div>
 </template>
 
 <style scoped>
@@ -17,11 +18,13 @@ const props = defineProps<{
   bottom: 0;
   width: 20rem;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   z-index: 1000;
-  transform: translateX(100%);
+  transform: translateX(85%);
+  transition: transform 0.3s ease-in-out;
 }
-.flyout.hover,
+
+.flyout:hover,
 .flyout.isOpen {
   transform: translateX(0);
 }

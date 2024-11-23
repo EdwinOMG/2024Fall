@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { refCart, count, total } from '@/models/shoppingCart'
-import { ref } from 'vue'
 
 const cart = refCart()
 </script>
@@ -8,13 +7,20 @@ const cart = refCart()
 <template>
   <div class="cart">
     <h1 class="title">Shopping Cart</h1>
-    <h2 class="subtitle">This is the shopping cart page</h2>
-    <p>Here is a list of items in your cart</p>
-    <div v-for="item in cart" :key="item.product.id">
-      <p>{{ item.product.title }}</p>
-      <p>{{ item.product.price }}</p>
+    <div v-if="cart.length === 0">
+      <p>Your cart is empty</p>
     </div>
-    <p>Total: {{ count }} items = ${{ total }}</p>
+    <div v-else>
+      <div v-for="item in cart" :key="item.product.id" class="item">
+        <img :src=""item.product.thumbnail" alt="item.product.title" />
+        <h3>{{  item.product.title }}</h3>
+        <div>{{ item.product.price }}</div>
+        <div>{{ item.quantity }}</div>
+      </div>
+      <div>
+        <p>Total: {{ count }} items = ${{ total }}</p>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -1,0 +1,14 @@
+
+###
+GET https://google.com
+
+###
+POST https://dummy.json.com/products
+MyHeader: MyValue
+
+{
+    "title": "Green Lipstick",
+    "price": 10.99
+    "description": "A green lipstick for the bold and daring"
+    "image": "https://dummy.json.com/products/green-lipstick.jpg"
+}

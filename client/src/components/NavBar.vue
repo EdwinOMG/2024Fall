@@ -5,7 +5,6 @@ import FlyoutPanel from './FlyoutPanel.vue'
 import ShoppingCart from './ShoppingCart.vue'
 
 const isOpen = ref(false)
-
 const isCartOpen = ref(false)
 </script>
 
